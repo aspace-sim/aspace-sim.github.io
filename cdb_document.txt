@@ -1,0 +1,57 @@
+CDB() Documentation
+
+cdb(a)
+Adds the object to CDB. Only THINGS may be added to the CDB. There owner
+must also be a WIZARD. It would appear that the object has to be added to
+the cdb() upon each startup.
+
+cdb(b)
+Bug checks object in CDB. Check the upper and lower bandpasses. If they are
+invalid, they are fixed.
+
+cdb(c)
+Checks to see whether object is in the CDB. If it object is in the CDB, it
+will return its CDB number otherwise it returns #-1.
+
+cdb(d)
+Deletes the object from the CDB.
+
+cdb(l)
+Gives the status of the object in the CDB. Returns its DBref, CDB number,
+lower bandpass frequency and upper bandpass frequency.
+
+cdb(s,<lower bandpass frequency>,<upper bandpass frequency>)
+Sets lower and upper bandwith of CDB object. Transmissions will only be
+received from the lower bandpass frequency to the upper bandpass frequency
+inclusive. Frequencies must be from 1 to 1000.
+
+cdb(t,<frequency>,<max range in SUs>,<code>,<message>)
+Transmits <message> over frequency. If ENCRYPTION attribute is set, the
+message is encrypted. <code> is also sent but not encrypted.
+
+ENCRYPTION attribute
+
+Sets the encryption code. Will encrypt all outgoing transmissions with
+whatever that is in this attribute. Incoming transmissions are decrypted
+with the attributes contents unless the transmission is unencrypted.
+
+EXECUTE attribute
+
+This attribute is executed when the object receives an incoming message. The
+following information is also given...
+
+%0 Comm Frequency
+%1 Player Sender DBref
+%2 Object Sender DBref
+%3 Object Receiver DBref
+&4 SDB Location of Sender
+&5 SDB Location of Receiver
+%6 Max Range of Transmission (in SUs)
+%7 Range of Receiver from Sender (in SUs)
+%8 Code (like message but does not get encrypted)
+&9 Message (encrypts if ENCRYPTION attribute it set on source object)
+
+Duckers@ATS
+Email: duckw@crosswinds.net
+
+
